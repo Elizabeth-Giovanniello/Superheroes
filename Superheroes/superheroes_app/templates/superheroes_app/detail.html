@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Superhero Details</title>
+    <title>{{single_hero.name}} Details</title>
 </head>
 <body>
-    <h1>{{single_hero.name}}</h1>
-</body>
+    <h1>{{single_hero.name}} Details</h1>
+    <h2>Alter Ego: {{single_hero.alter_ego}}</h2>
+    <h2>Primary Ability: {{single_hero.primary_ability}}</h2>
+    <h2>Secondary Ability: {{single_hero.secondary_ability}}</h2>
+    <h2>Catchphrase: {{single_hero.catch_phrase}}</h2>
+    <a href="{% url 'superheroes_app:edit' single_hero.id %}">Edit Details</a>
+    <a href="{% url 'superheroes_app:delete' single_hero.id %}"><button type="button">Delete From List</button></a>
 </html>
