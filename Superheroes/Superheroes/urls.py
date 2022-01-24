@@ -25,9 +25,3 @@ urlpatterns = [
     path('superheroes_app/', include('superheroes_app.urls')),
     path('', RedirectView.as_view(url='/superheroes_app/'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-#*NOT SURE IF BELOW IS NECESSRAY:
-if settings.DEBUG:
-        urlpatterns += static(settings.MEDIA_URL,
-                              document_root=settings.MEDIA_ROOT)

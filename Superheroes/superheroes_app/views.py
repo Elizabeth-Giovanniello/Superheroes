@@ -7,7 +7,7 @@ from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 def index(request):
-    all_heroes = SuperheroApp.objects.all()
+    all_heroes = SuperheroApp.objects.all().order_by('name')
     context = {
         'all_heroes': all_heroes
     }
