@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .models import SuperheroApp
-from .forms import *
 from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
@@ -34,7 +33,7 @@ def create(request):
         except: image = '/images/default.jpg'
         new_hero = SuperheroApp(name = name, alter_ego = alter_ego, primary_ability = primary, secondary_ability = secondary, catch_phrase = catchphrase, photo = image)
         new_hero.save()
-        return HttpResponseRedirect(reverse('superheroes_app:index'))
+        return HttpResponseRedirect(reverse('superheroes_app:detail', kwargs={'hero_id': new_hero.id}))
 
     else:
         return render(request, 'superheroes_app/create.html')
@@ -47,7 +46,10 @@ def edit(request, id):
         single_hero.primary_ability = request.POST.get('primary')
         single_hero.secondary_ability = request.POST.get('secondary')
         single_hero.catch_phrase = request.POST.get('catchphrase')
-        single_hero.photo = request.FILES['image']
+        try: single_hero.photo = request.FILES['image']
+        except: 
+            if not single_hero.photo:
+                single_hero.photo = '/images/default/jpg'
         single_hero.save(update_fields=['name', 'alter_ego', 'primary_ability', 'secondary_ability', 'catch_phrase', 'photo'])
         return HttpResponseRedirect(reverse('superheroes_app:detail', kwargs={'hero_id': single_hero.id}))
     else:
@@ -56,7 +58,6 @@ def edit(request, id):
         }
         return render(request, 'superheroes_app/edit.html', context)
 
-        #TODO come back and fix the link to bring us back to the details page
 
 def delete(request, id):
     single_hero = SuperheroApp.objects.get(pk=id)

@@ -10,7 +10,7 @@
 
 # (10 points) As a superhero fan, I want to delete a superhero from the database.
 
-(5 points) As a developer, I want to add an image of my favorite superhero on the web application’s home page.
+# (5 points) As a developer, I want to add an image of my favorite superhero on the web application’s home page.
 
 - Tip: the best practice approach to managing static files (image, JavaScript files, etc.) is to do this: https://docs.djangoproject.com/en/4.0/howto/static-files/
 

@@ -15,7 +15,7 @@
         Primary Ability: <input type="text" name="primary" id="primary" value = "{{single_hero.primary_ability}}"><br />
         Secondary Ability: <input type="text" name="secondary" id="secondary" value = "{{single_hero.secondary_ability}}"><br />
         Catchphrase: <input type="text" name="catchphrase" id="catchphrase" value = "{{single_hero.catch_phrase}}"><br />
-        Image: <input type="file" name="image" id="image" value = "{{single_hero.photo}}" accept="image/*"><br />
+        Image: <input type="file" name="image" id="image" accept="image/*"><br />
         {% if file_url %}
           <img src="{{ file_url }}" class="img-fluid">
         {% endif %}

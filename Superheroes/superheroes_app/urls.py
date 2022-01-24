@@ -14,7 +14,6 @@ urlpatterns = [
     path('new/', views.create, name='create'),
     path('<int:id>/edit/', views.edit, name='edit'),
     path('<int:id>/delete/', views.delete, name='delete'),
-    path('image_upload/', views.image_upload, name = 'image_upload'),
 ]
 
 if settings.DEBUG:
