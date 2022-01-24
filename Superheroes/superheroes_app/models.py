@@ -7,6 +7,7 @@ class SuperheroApp(models.Model):
     primary_ability = models.CharField(max_length=200)
     secondary_ability = models.CharField(max_length=200)
     catch_phrase = models.CharField(max_length=200)
+    photo = models.ImageField(upload_to='images/', default='/images/default.jpg') 
 
     def __str__(self):
         return self.name

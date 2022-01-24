@@ -7,6 +7,11 @@
     <title>{{single_hero.name}} Details</title>
 </head>
 <body>
+    {% if single_hero.photo %}
+        <img src="{{ single_hero.photo.url }}">
+    {% else %}
+        <img src="/images/default.jpg">
+    {% endif %}
     <h1>{{single_hero.name}} Details</h1>
     <h2>Alter Ego: {{single_hero.alter_ego}}</h2>
     <h2>Primary Ability: {{single_hero.primary_ability}}</h2>

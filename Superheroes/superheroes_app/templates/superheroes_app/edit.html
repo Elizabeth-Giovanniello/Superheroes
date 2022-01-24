@@ -8,13 +8,17 @@
 </head>
 <body>
     <h1>Edit {{single_hero.name}} Details</h1>
-    <form action="{% url 'superheroes_app:edit' single_hero.id %}" method="post">
+    <form action="{% url 'superheroes_app:edit' single_hero.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         Name: <input type="text" name="name" id="name" value = "{{single_hero.name}}"><br />
         Alter Ego: <input type="text" name="alter_ego" id="alter_ego" value = "{{single_hero.alter_ego}}"><br />
         Primary Ability: <input type="text" name="primary" id="primary" value = "{{single_hero.primary_ability}}"><br />
         Secondary Ability: <input type="text" name="secondary" id="secondary" value = "{{single_hero.secondary_ability}}"><br />
         Catchphrase: <input type="text" name="catchphrase" id="catchphrase" value = "{{single_hero.catch_phrase}}"><br />
+        Image: <input type="file" name="image" id="image" value = "{{single_hero.photo}}" accept="image/*"><br />
+        {% if file_url %}
+          <img src="{{ file_url }}" class="img-fluid">
+        {% endif %}
         <input type="submit" value="Submit Changes">
     </form>
 </body>

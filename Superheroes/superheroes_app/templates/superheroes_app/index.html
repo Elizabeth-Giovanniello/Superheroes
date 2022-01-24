@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>List of Heroes</h1>
+    <img src="/static/superheroes_app/superheroes_image.jpg" alt="Superheroes sitting on a beam above the city eating lunch">
     <ul>
         {% for hero in all_heroes %}
         <li> <h2>{{hero.name}} - <a href="{% url 'superheroes_app:detail' hero.id %}">Click for Details</a></h2> </li>
@@ -16,3 +17,4 @@
     <a href="{% url 'superheroes_app:create' %}">Add New Hero</a>
 </body>
 </html>
+

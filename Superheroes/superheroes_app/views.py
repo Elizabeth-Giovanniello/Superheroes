@@ -1,8 +1,10 @@
 from multiprocessing import context
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .models import SuperheroApp
+from .forms import *
+from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 def index(request):
@@ -28,7 +30,9 @@ def create(request):
         primary = request.POST.get('primary')
         secondary = request.POST.get('secondary')
         catchphrase = request.POST.get('catchphrase')
-        new_hero = SuperheroApp(name = name, alter_ego = alter_ego, primary_ability = primary, secondary_ability = secondary, catch_phrase = catchphrase)
+        try: image = request.FILES['image']
+        except: image = '/images/default.jpg'
+        new_hero = SuperheroApp(name = name, alter_ego = alter_ego, primary_ability = primary, secondary_ability = secondary, catch_phrase = catchphrase, photo = image)
         new_hero.save()
         return HttpResponseRedirect(reverse('superheroes_app:index'))
 
@@ -43,7 +47,8 @@ def edit(request, id):
         single_hero.primary_ability = request.POST.get('primary')
         single_hero.secondary_ability = request.POST.get('secondary')
         single_hero.catch_phrase = request.POST.get('catchphrase')
-        single_hero.save(update_fields=['name', 'alter_ego', 'primary_ability', 'secondary_ability', 'catch_phrase'])
+        single_hero.photo = request.FILES['image']
+        single_hero.save(update_fields=['name', 'alter_ego', 'primary_ability', 'secondary_ability', 'catch_phrase', 'photo'])
         return HttpResponseRedirect(reverse('superheroes_app:detail', kwargs={'hero_id': single_hero.id}))
     else:
         context = {
@@ -57,3 +62,8 @@ def delete(request, id):
     single_hero = SuperheroApp.objects.get(pk=id)
     single_hero.delete()
     return HttpResponseRedirect(reverse('superheroes_app:index'))
+
+
+
+  
+  
