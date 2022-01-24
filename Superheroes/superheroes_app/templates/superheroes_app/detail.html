@@ -12,14 +12,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+    <header>
+        {% load static %}
+        <a href="{% url 'superheroes_app:index' %}"><img style="width:4%" src="{% static 'superheroes_app/home_icon.png' %}"></a>
+    </header>
     {% if single_hero.photo %}
         <img class="img-thumbnail float-end" style="width:40%" src="{{ single_hero.photo.url }}">
     {% else %}
         <img src="/images/default.jpg">
     {% endif %}
     <div class="container pt-5 ">
-    <h1>{{single_hero.name}} Details</h1>
-    </div>
+    <h1>{{single_hero.name}} Details</h1><br/>
     <h2>Alter Ego: {{single_hero.alter_ego}}</h2>
     <h2>Primary Ability: {{single_hero.primary_ability}}</h2>
     <h2>Secondary Ability: {{single_hero.secondary_ability}}</h2>
@@ -46,6 +49,7 @@
             </div>
           </div>
         </div>
+    </div>
     </div>
 </body>
 </html>
